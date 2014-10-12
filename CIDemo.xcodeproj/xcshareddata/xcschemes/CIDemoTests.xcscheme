@@ -23,6 +23,15 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4BC4010219EAFDAA00AB2E69"
+            BuildableName = "CIDemo.app"
+            BlueprintName = "CIDemo"
+            ReferencedContainer = "container:CIDemo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -33,6 +42,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4BC4010219EAFDAA00AB2E69"
+            BuildableName = "CIDemo.app"
+            BlueprintName = "CIDemo"
+            ReferencedContainer = "container:CIDemo.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -42,6 +60,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4BC4010219EAFDAA00AB2E69"
+            BuildableName = "CIDemo.app"
+            BlueprintName = "CIDemo"
+            ReferencedContainer = "container:CIDemo.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
