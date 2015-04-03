@@ -62,9 +62,11 @@ SNAppDelegate *appDelegate;
                                     inManagedObjectContext:appDelegate.managedObjectContext];
     newEvent.timeStamp = [NSDate date];
     [appDelegate saveContext];
-    SNDetailViewController *dvc = [[SNDetailViewController alloc] init];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    
+    SNDetailViewController *dvc = [storyboard instantiateViewControllerWithIdentifier:@"SNDetailView"];
     dvc.detailItem = newEvent;
-    XCTAssertTrue([dvc.detailDescriptionLabel.text isEqualToString:[[newEvent valueForKey:@"timeStamp"] description]]);
+    XCTAssertTrue([[[dvc.detailItem valueForKey:@"timeStamp"] description] isEqualToString:[[newEvent valueForKey:@"timeStamp"] description]]);
 }
 
 @end
