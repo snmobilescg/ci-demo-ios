@@ -8,27 +8,63 @@
 
 #import <XCTest/XCTest.h>
 
+#import "SNAppDelegate.h"
+#import "SNMasterViewController.h"
+#import "SNDetailViewController.h"
+#import "Event.h"
+
 @interface CIDemoTests : XCTestCase
 
 @end
 
 @implementation CIDemoTests
+SNAppDelegate *appDelegate;
 
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    appDelegate = (SNAppDelegate *)[[UIApplication sharedApplication] delegate];
+
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    appDelegate = nil;
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testPassingTestOne
+{
+    XCTAssertTrue(appDelegate.persistentStoreCoordinator == appDelegate.managedObjectContext.persistentStoreCoordinator);
+}
+
+- (void)testPassingTestTwo
+{
+    SNMasterViewController *mvc = [[SNMasterViewController alloc] init];
+    mvc.managedObjectContext = appDelegate.managedObjectContext;
+    
+    UINavigationController *navigationController = (UINavigationController *)appDelegate.window.rootViewController;
+    SNMasterViewController *controller = (SNMasterViewController *)navigationController.topViewController;
+    controller.managedObjectContext = appDelegate.managedObjectContext;
+    
+    XCTAssertTrue(mvc.fetchedResultsController.managedObjectContext == appDelegate.managedObjectContext);
+}
+
+- (void)testFailingTestThree
 {
     XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+
+- (void)testPassingTestFour
+{
+    Event *newEvent = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"Event"
+                                    inManagedObjectContext:appDelegate.managedObjectContext];
+    newEvent.timeStamp = [NSDate date];
+    [appDelegate saveContext];
+    SNDetailViewController *dvc = [[SNDetailViewController alloc] init];
+    dvc.detailItem = newEvent;
+    XCTAssertTrue([dvc.detailDescriptionLabel.text isEqualToString:[[newEvent valueForKey:@"timeStamp"] description]]);
 }
 
 @end
